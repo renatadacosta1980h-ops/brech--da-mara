@@ -1,0 +1,12 @@
+{
+  "name": "brecho-da-mara",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Loja e painel administrativo do Brechó da Mara",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
