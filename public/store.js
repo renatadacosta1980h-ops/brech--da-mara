@@ -1,0 +1,17 @@
+const money = value => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
+let products = [], cart = JSON.parse(localStorage.getItem('mara-cart') || '[]');
+const grid = document.querySelector('#product-grid');
+const panel = document.querySelector('#cart-panel');
+const overlay = document.querySelector('#overlay');
+
+async function loadProducts() { const response = await fetch('/api/products'); products = await response.json(); renderProducts(); }
+function renderProducts() { document.querySelector('#product-total').textContent = products.length ? `${products.length} ${products.length === 1 ? 'peça' : 'peças'} disponíveis` : ''; grid.innerHTML = products.length ? products.map(p => `<article class="product-card"><img class="product-image" src="${p.image}" alt="${escapeHtml(p.name)}" /><div class="product-details"><h3>${escapeHtml(p.name)}</h3><p>${escapeHtml(p.size || 'Tamanho único')}</p><div class="product-bottom"><span class="price">${money(p.price)}</span><button class="add-button" data-id="${p.id}">Adicionar</button></div></div></article>`).join('') : '<div class="empty"><strong>Novidades em breve</strong>A Mara está preparando os primeiros achados para você.</div>'; document.querySelectorAll('.add-button').forEach(btn => btn.onclick = () => addToCart(btn.dataset.id)); }
+function escapeHtml(text) { const div = document.createElement('div'); div.textContent = text; return div.innerHTML; }
+function addToCart(id) { const item = products.find(p => p.id === id); if (!cart.some(p => p.id === id)) cart.push(item); saveCart(); openCart(); }
+function saveCart() { localStorage.setItem('mara-cart', JSON.stringify(cart)); document.querySelector('#cart-count').textContent = cart.length; renderCart(); }
+function renderCart() { const box = document.querySelector('#cart-items'); box.innerHTML = cart.length ? cart.map(p => `<div class="cart-item"><img src="${p.image}" alt="" /><div><h3>${escapeHtml(p.name)}</h3><p>${escapeHtml(p.size || 'Tamanho único')}</p><strong>${money(p.price)}</strong></div><button class="remove-button" data-id="${p.id}" aria-label="Remover peça">×</button></div>`).join('') : '<div class="empty"><strong>Sua sacola está vazia</strong>Adicione os seus achados favoritos.</div>'; document.querySelector('#cart-total').textContent = money(cart.reduce((total, p) => total + p.price, 0)); document.querySelector('#checkout').disabled = !cart.length; document.querySelectorAll('.remove-button').forEach(btn => btn.onclick = () => { cart = cart.filter(p => p.id !== btn.dataset.id); saveCart(); }); }
+function openCart() { panel.classList.add('open'); overlay.classList.add('show'); panel.setAttribute('aria-hidden', 'false'); }
+function closeCart() { panel.classList.remove('open'); overlay.classList.remove('show'); panel.setAttribute('aria-hidden', 'true'); }
+document.querySelector('#open-cart').onclick = openCart; document.querySelector('#close-cart').onclick = closeCart; overlay.onclick = closeCart;
+document.querySelector('#checkout').onclick = () => { const lines = cart.map(p => `• ${p.name}${p.size ? ` (${p.size})` : ''} — ${money(p.price)}`); const text = `Olá, Mara! Quero finalizar esta compra:%0A%0A${encodeURIComponent(lines.join('\n'))}%0A%0ATotal: ${encodeURIComponent(money(cart.reduce((total, p) => total + p.price, 0)))}`; window.open(`https://wa.me/5531987584930?text=${text}`, '_blank'); };
+saveCart(); loadProducts().catch(() => { grid.innerHTML = '<div class="empty"><strong>Não foi possível carregar o acervo</strong>Tente atualizar a página.</div>'; });
