@@ -11,7 +11,7 @@
 // o catálogo, então NÃO pule aquele passo do README.
 // ==========================================================================
 
-const SUPABASE_URL = "COLE_AQUI_A_URL_DO_SEU_PROJETO_SUPABASE";
-const SUPABASE_ANON_KEY = "COLE_AQUI_A_CHAVE_ANON_PUBLIC_DO_SUPABASE";
+const SUPABASE_URL = "https://idadwedycynwcllfouul.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_fhYnd1YdlhekS_y9vYhD4w_TLMOIvbT";
 
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
