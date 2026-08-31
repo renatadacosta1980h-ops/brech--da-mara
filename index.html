@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brechó da Mara — roupas de segunda mão com história</title>
+  <meta name="description" content="Catálogo do Brechó da Mara: peças selecionadas de segunda mão, boas para o bolso e para o planeta." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="topo">
+    <div class="topo-conteudo">
+      <a class="marca" href="index.html">
+        <span class="marca-selo">BM</span>
+        <span class="marca-nome">Brechó da <em>Mara</em></span>
+      </a>
+      <nav class="topo-nav">
+        <a href="#catalogo">Catálogo</a>
+        <a href="admin.html">Área da Mara</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="heroi">
+    <div class="heroi-conteudo">
+      <h1>Roupa boa não devia<br><span class="linha-azul">morrer no armário.</span></h1>
+      <p>Peças de segunda mão escolhidas com carinho, uma a uma. Cada etiqueta aqui já tem uma história — a próxima parte é com você.</p>
+      <div class="heroi-acoes">
+        <a class="botao botao-primario" href="#catalogo">Ver peças disponíveis</a>
+      </div>
+    </div>
+  </section>
+
+  <div id="catalogo"></div>
+
+  <section class="filtros">
+    <div class="filtros-linha">
+      <input class="campo" id="filtro-busca" type="text" placeholder="Buscar peça…" />
+      <select class="campo" id="filtro-categoria"><option value="">Categoria</option></select>
+      <select class="campo" id="filtro-tamanho"><option value="">Tamanho</option></select>
+      <span class="filtros-contagem" id="contagem-produtos"></span>
+    </div>
+  </section>
+
+  <main class="catalogo">
+    <div class="grid-produtos" id="grade-produtos">
+      <div class="carregando">Carregando peças…</div>
+    </div>
+  </main>
+
+  <footer class="rodape">
+    <span>© <span id="ano"></span> Brechó da Mara</span>
+    <a href="admin.html">Área administrativa</a>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabaseClient.js"></script>
+  <script src="js/catalog.js"></script>
+  <script>document.getElementById("ano").textContent = new Date().getFullYear();</script>
+</body>
+</html>

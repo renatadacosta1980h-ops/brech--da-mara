@@ -1,0 +1,499 @@
+/* ==========================================================================
+   Brechó da Mara — tema "etiqueta de roupa": jeans azul + preto + papel-linho
+   ========================================================================== */
+
+:root {
+  --preto:        #0a0c0f;
+  --preto-2:      #14171d;
+  --preto-3:      #1d2129;
+  --azul-jeans:   #2f5d8a;
+  --azul-jeans-2: #3f76aa;
+  --azul-claro:   #8fb8dd;
+  --papel:        #efe9dc;
+  --papel-suave:  #b9b3a4;
+  --linha:        #2a2e36;
+  --vendido:      #7a4a3a;
+
+  --fonte-titulo: "Fraunces", Georgia, serif;
+  --fonte-corpo:  "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --raio: 3px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--preto);
+  color: var(--papel);
+  font-family: var(--fonte-corpo);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+
+img { max-width: 100%; display: block; }
+
+button, input, select, textarea { font-family: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--azul-claro);
+  outline-offset: 2px;
+}
+
+.container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Cabeçalho ---------- */
+
+.topo {
+  border-bottom: 1px solid var(--linha);
+  background: linear-gradient(180deg, var(--preto-2), var(--preto));
+}
+
+.topo-conteudo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 24px;
+}
+
+.marca {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.marca-selo {
+  font-family: var(--fonte-titulo);
+  font-size: 15px;
+  color: var(--preto);
+  background: var(--azul-jeans-2);
+  border-radius: 999px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.marca-nome {
+  font-family: var(--fonte-titulo);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--papel);
+  letter-spacing: 0.2px;
+}
+
+.marca-nome em {
+  font-style: normal;
+  color: var(--azul-claro);
+}
+
+.topo-nav a {
+  color: var(--papel-suave);
+  text-decoration: none;
+  font-size: 14px;
+  margin-left: 22px;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.topo-nav a:hover { color: var(--azul-claro); border-color: var(--azul-claro); }
+
+/* ---------- Herói ---------- */
+
+.heroi {
+  padding: 64px 24px 48px;
+  border-bottom: 1px dashed var(--linha);
+  position: relative;
+}
+
+.heroi-conteudo { max-width: 640px; }
+
+.heroi h1 {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(34px, 5vw, 52px);
+  line-height: 1.08;
+  margin: 0 0 18px;
+  font-weight: 600;
+}
+
+.heroi h1 .linha-azul {
+  display: inline-block;
+  background: var(--azul-jeans);
+  padding: 2px 10px;
+  border-radius: var(--raio);
+}
+
+.heroi p {
+  color: var(--papel-suave);
+  font-size: 17px;
+  max-width: 52ch;
+  margin: 0 0 26px;
+}
+
+.heroi-acoes { display: flex; gap: 14px; flex-wrap: wrap; }
+
+/* ---------- Botões ---------- */
+
+.botao {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  border-radius: var(--raio);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s, opacity .15s;
+}
+
+.botao-primario {
+  background: var(--azul-jeans-2);
+  color: #06090c;
+}
+.botao-primario:hover { background: var(--azul-claro); }
+
+.botao-secundario {
+  background: transparent;
+  border-color: var(--linha);
+  color: var(--papel);
+}
+.botao-secundario:hover { border-color: var(--azul-claro); color: var(--azul-claro); }
+
+.botao-perigo {
+  background: transparent;
+  border-color: #5c3128;
+  color: #d99b8a;
+}
+.botao-perigo:hover { background: #2a1712; }
+
+.botao[disabled] { opacity: 0.5; cursor: default; }
+
+/* ---------- Filtros do catálogo ---------- */
+
+.filtros {
+  padding: 28px 24px 0;
+}
+
+.filtros-linha {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--linha);
+}
+
+.campo {
+  background: var(--preto-2);
+  border: 1px solid var(--linha);
+  color: var(--papel);
+  padding: 10px 12px;
+  border-radius: var(--raio);
+  font-size: 14px;
+  min-width: 150px;
+}
+
+.campo::placeholder { color: var(--papel-suave); }
+
+.filtros-contagem {
+  margin-left: auto;
+  font-size: 13px;
+  color: var(--papel-suave);
+}
+
+/* ---------- Grid de produtos ---------- */
+
+.catalogo {
+  padding: 32px 24px 80px;
+}
+
+.grid-produtos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 22px;
+}
+
+.cartao-produto {
+  background: var(--preto-2);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.cartao-foto {
+  aspect-ratio: 3/4;
+  background: var(--preto-3) center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--papel-suave);
+  font-size: 13px;
+}
+
+.cartao-selo-vendido {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: var(--vendido);
+  color: var(--papel);
+  font-size: 11px;
+  padding: 4px 9px;
+  border-radius: 999px;
+}
+
+.cartao-corpo { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+
+.cartao-categoria { font-size: 11px; color: var(--azul-claro); }
+
+.cartao-nome {
+  font-family: var(--fonte-titulo);
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.cartao-meta {
+  font-size: 13px;
+  color: var(--papel-suave);
+  display: flex;
+  gap: 10px;
+}
+
+.cartao-preco {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--papel);
+  margin-top: 4px;
+}
+
+.cartao-rodape { margin-top: auto; padding-top: 10px; }
+
+.cartao-rodape .botao { width: 100%; justify-content: center; }
+
+.vazio {
+  text-align: center;
+  padding: 70px 20px;
+  color: var(--papel-suave);
+}
+
+/* ---------- Rodapé ---------- */
+
+.rodape {
+  border-top: 1px solid var(--linha);
+  padding: 30px 24px;
+  color: var(--papel-suave);
+  font-size: 13px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.rodape a { color: var(--azul-claro); text-decoration: none; }
+
+/* ---------- Admin: login ---------- */
+
+.tela-login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.cartao-login {
+  background: var(--preto-2);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  padding: 36px 32px;
+  width: 100%;
+  max-width: 360px;
+}
+
+.cartao-login h1 {
+  font-family: var(--fonte-titulo);
+  font-size: 24px;
+  margin: 0 0 6px;
+}
+
+.cartao-login p.sub {
+  color: var(--papel-suave);
+  font-size: 13px;
+  margin: 0 0 24px;
+}
+
+.campo-grupo { margin-bottom: 14px; display: flex; flex-direction: column; gap: 6px; }
+
+.campo-grupo label { font-size: 12px; color: var(--papel-suave); }
+
+.campo-grupo input, .campo-grupo select, .campo-grupo textarea {
+  background: var(--preto);
+  border: 1px solid var(--linha);
+  color: var(--papel);
+  padding: 10px 12px;
+  border-radius: var(--raio);
+  font-size: 14px;
+  width: 100%;
+}
+
+.erro-msg {
+  background: #241512;
+  border: 1px solid #5c3128;
+  color: #d99b8a;
+  font-size: 13px;
+  padding: 9px 12px;
+  border-radius: var(--raio);
+  margin-bottom: 14px;
+}
+
+.sucesso-msg {
+  background: #10201a;
+  border: 1px solid #2c5c45;
+  color: #8fd9b5;
+  font-size: 13px;
+  padding: 9px 12px;
+  border-radius: var(--raio);
+  margin-bottom: 14px;
+}
+
+/* ---------- Admin: painel ---------- */
+
+.admin-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--linha);
+}
+
+.admin-corpo {
+  padding: 28px 24px 80px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.admin-cabecalho-secao {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.admin-cabecalho-secao h2 {
+  font-family: var(--fonte-titulo);
+  font-size: 20px;
+  margin: 0;
+}
+
+.tabela-produtos {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.tabela-produtos th {
+  text-align: left;
+  color: var(--papel-suave);
+  font-weight: 500;
+  font-size: 12px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--linha);
+}
+
+.tabela-produtos td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--linha);
+  vertical-align: middle;
+}
+
+.tabela-miniatura {
+  width: 42px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 2px;
+  background: var(--preto-3);
+}
+
+.etiqueta-status {
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  display: inline-block;
+}
+.etiqueta-status.disponivel { background: #10281f; color: #8fd9b5; }
+.etiqueta-status.vendido { background: #2a1712; color: #d99b8a; }
+
+.acoes-tabela { display: flex; gap: 8px; }
+.acoes-tabela button {
+  background: none;
+  border: none;
+  color: var(--azul-claro);
+  font-size: 13px;
+  cursor: pointer;
+  padding: 0;
+}
+.acoes-tabela button.excluir { color: #d99b8a; }
+
+/* ---------- Modal de produto (admin) ---------- */
+
+.sobreposicao {
+  position: fixed;
+  inset: 0;
+  background: rgba(6, 8, 10, 0.75);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 20px;
+  overflow-y: auto;
+  z-index: 50;
+}
+
+.modal-produto {
+  background: var(--preto-2);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  width: 100%;
+  max-width: 480px;
+  padding: 28px;
+}
+
+.modal-produto h2 {
+  font-family: var(--fonte-titulo);
+  font-size: 20px;
+  margin: 0 0 20px;
+}
+
+.grade-dois { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+.modal-acoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.carregando { color: var(--papel-suave); font-size: 14px; padding: 40px; text-align: center; }
+
+@media (max-width: 640px) {
+  .topo-nav { display: none; }
+  .rodape { flex-direction: column; }
+  .grade-dois { grid-template-columns: 1fr; }
+}
