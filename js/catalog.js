@@ -2,7 +2,7 @@
 // Catálogo público — busca produtos no Supabase e renderiza a vitrine
 // ==========================================================================
 
-const NUMERO_WHATSAPP = "5500000000000"; // troque pelo número da Mara (com DDI+DDD, só dígitos)
+const NUMERO_WHATSAPP = "5531987584930"; // troque pelo número da Mara (com DDI+DDD, só dígitos)
 
 const grade = document.getElementById("grade-produtos");
 const contagemEl = document.getElementById("contagem-produtos");
